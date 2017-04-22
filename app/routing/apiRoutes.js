@@ -36,21 +36,8 @@ module.exports = function(app) {
     });
 
     app.post('/api/tables', function (req, res) {
-        var wait_list = {
-                "reservation_type": "wait-list"
-        };
-
-        var reservation = {
-                "reservation_type": "reservation"
-        };
-
-        var randNum = Math.floor(Math.random() * 2);
-
-        if (randNum) {
-            res.json(reservation);
-        } else {
-            res.json(wait_list);
-        }
+        reservPost(req);
+        res.json(reservPost());
     });
 
     app.delete('/api/tables', function (req, res) {
@@ -60,4 +47,22 @@ module.exports = function(app) {
         console.log(deleted.result);
         res.json(deleted);
     });
+}
+
+function reservPost(request) {
+    var wait_list = {
+        "reservation_type": "wait-list"
+    };
+
+    var reservation = {
+        "reservation_type": "reservation"
+    };
+
+    var randNum = Math.floor(Math.random() * 2);
+
+    if (randNum) {
+        return reservation;
+    } else {
+        return wait_list;
+    }
 }
