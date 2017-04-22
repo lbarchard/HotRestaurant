@@ -57,14 +57,32 @@ function reserveGet(callback) {
 }
 
 function reservePost(request) {
+    let reservation = request.body;
     connection.query(
         "SELECT  COUNT(*) AS NumberOfReservations FROM tables WHERE reservation_type=?",
         ["reserved"],
         function(err, res) {
             if (err) throw err;
-            console.log(res);
-        }
-    )
+            console.log(res[0].NumberOfReservations);
+
+            if (res[0].NumberOfReservations >= 5) {
+                connection.query(
+                    "INSERT INTO tables (name, phone_number, email, reservation_type) VALUES (?, ?, ?, ?)",
+                    ["Cody", "5978345", "enadga@gmail.com", "wait-list"],
+                    function(err, res) {
+                        if (err) throw err;
+                        console.log(res);
+                });
+            } else {
+                connection.query(
+                    "INSERT INTO tables (name, phone_number, email, reservation_type) VALUES (?, ?, ?, ?)",
+                    ["Cody", "5978345", "enadga@gmail.com", "reserved"],
+                    function(err, res) {
+                        if (err) throw err;
+                        console.log(res);
+                });
+            }
+    });
 }
 
 function reserveDelete(callback) {
