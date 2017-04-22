@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Survey</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <br>
+                <h1 id="title">Survey Questions</h1>
+                <hr>
+                <h2>About You</h2>
+                <form action="http://localhost:8080/api/friends" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name (Required)</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="nameInput" required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Link to Photo Image (Required)</label>
+                        <input type="text" class="form-control" id="photo" aria-describedby="photoInput" required="true">
+                    </div>
+                    <hr>
+                    <h2>Question 1</h2>
+                    <div class="form-group">
+                        <label for="question1">Your mind is always buzzing with unexplored ideas and plans.</label>
+                        <select class="form-control" id="question1">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 2</h2>
+                    <div class="form-group">
+                        <label for="question2">Generally speaking, you rely more on your experience than your imagination.</label>
+                        <select class="form-control" id="question2">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 3</h2>
+                    <div class="form-group">
+                        <label for="question3">You find it easy to stay relaxed and focused even when there is some pressure.</label>
+                        <select class="form-control" id="question3">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 4</h2>
+                    <div class="form-group">
+                        <label for="question4">You rarely do something just out of sheer curiosity.</label>
+                        <select class="form-control" id="question4">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 5</h2>
+                    <div class="form-group">
+                        <label for="question5">People can rarely upset you.</label>
+                        <select class="form-control" id="question5">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 6</h2>
+                    <div class="form-group">
+                        <label for="question6">It is often difficult for you to relate to other people’s feelings.</label>
+                        <select class="form-control" id="question6">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 7</h2>
+                    <div class="form-group">
+                        <label for="question7">In a discussion, truth should be more important than people’s sensitivities.</label>
+                        <select class="form-control" id="question7">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 8</h2>
+                    <div class="form-group">
+                        <label for="question8">You rarely get carried away by fantasies and ideas.</label>
+                        <select class="form-control" id="question8">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 9</h2>
+                    <div class="form-group">
+                        <label for="question9">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
+                        <select class="form-control" id="question9">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <h2>Question 10</h2>
+                    <div class="form-group">
+                        <label for="question10">You feel more energetic after spending time with a group of people.</label>
+                        <select class="form-control" id="question10">
+                            <option>1 (Strongly Disagree)</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5 (Strongly Agree)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i> Submit
+                    </button>
+                </form>
+                <hr>
+            </div>
+        </div>
+        <footer>
+            <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/cbrannon/FriendlyFinder">GitHub Repo</a></p> 
+        </footer>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Best Match</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(() => {
+            $("#submit").on("click", (event) => {
+                event.preventDefault();
+                if (!$('#name').val() || !$('#photo').val()) {
+                    // tell them they cant submit b/c name is required
+                    if (!$('#name').val()) {
+                        $("#name").parent("div").addClass("has-warning");
+                        location.href = "#name";
+                    }
+
+                    if (!$('#photo').val()) {
+                        $("#photo").parent("div").addClass("has-warning");
+                        location.href = "#photo";
+                    }
+                    
+                    return false;
+                } else {
+                    $("#name").parent("div").removeClass("has-warning");
+                    $("#photo").parent("div").removeClass("has-warning");
+                }
+                var userData = {
+                    "name": $("#name").val(),
+                    "photo": $("#photo").val(),
+                    "scores": [parseInt($("#question1").val()[0]), $("#question2").val()[0], $("#question3").val()[0], $("#question4").val()[0],
+                               $("#question5").val()[0], $("#question6").val()[0], $("#question7").val()[0], $("#question8").val()[0],
+                               $("#question9").val()[0], $("#question10").val()[0]]
+                }
+                console.log(userData);
+                $.post("http://localhost:8080/api/friends", userData, function(data){
+                    console.log(data);
+                });
+                $("#myModal").modal();
+            });
+        });
+    </script>
+</body>
+</html>
