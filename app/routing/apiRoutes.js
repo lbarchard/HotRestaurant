@@ -5,7 +5,22 @@ const app = express();
 const fs = require("fs");
 const mysql = require("mysql");
 
+var connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
 
+  // Your username
+  user: "root",
+
+  // Your password
+  password: "cdbrannon",
+  database: "HotRestaurantDB"
+});
+
+connection.connect(function(err) {
+  if (err) throw err;
+
+});
 
 module.exports = function(app) {
     require('../data/reservations.js');
@@ -15,41 +30,33 @@ module.exports = function(app) {
     app.use(bodyParser.json());
 
     app.get('/api/tables', function (req, res) {
-        var reservations = [
-            {
-                "name": "Jimi Hendrix",
-                "phone_number": 1234567890,
-                "email": "jimi@areyouexperienced.com",
-                "reservation_type": "reservation"
-            },
-            {
-                "name": "Person1",
-                "phone_number": 1510395713,
-                "email": "himi@areyo.com",
-                "reservation_type": "wait-list"
-            }
-        ];
-        // res.sendFile(path.join(__dirname, '../data', 'reservations.js'));
-        console.log("Get Tables");
-        res.json(reservations);
-        //
+        reserveGet(function(response) {
+            res.json(response);
+        });
     });
 
     app.post('/api/tables', function (req, res) {
-        reservPost(req);
-        res.json(reservPost());
+        res.json(reservePost(req));
     });
 
     app.delete('/api/tables', function (req, res) {
-        var deleted = {
-                "result": "Success"
-        };
-        console.log(deleted.result);
-        res.json(deleted);
+        reserveDelete(function (response) {
+            res.json(response);
+        });
     });
 }
 
-function reservPost(request) {
+function reserveGet(callback) {
+    connection.query(
+    "SELECT reservation_id, name, phone_number, email, reservation_type FROM tables",
+        function(err, res) {
+        if (err) throw err;
+        console.log(res);
+        callback(res);
+    });
+}
+
+function reservePost(request) {
     var wait_list = {
         "reservation_type": "wait-list"
     };
@@ -65,4 +72,18 @@ function reservPost(request) {
     } else {
         return wait_list;
     }
+}
+
+function reserveDelete(callback) {
+    connection.query(
+        "DELETE FROM tables",
+        function(err, res) {
+            if (err) throw err;
+            var deleted = {
+                "result": "Success"
+            };
+            callback(deleted);
+        }
+    )
+    
 }
