@@ -57,21 +57,14 @@ function reserveGet(callback) {
 }
 
 function reservePost(request) {
-    var wait_list = {
-        "reservation_type": "wait-list"
-    };
-
-    var reservation = {
-        "reservation_type": "reservation"
-    };
-
-    var randNum = Math.floor(Math.random() * 2);
-
-    if (randNum) {
-        return reservation;
-    } else {
-        return wait_list;
-    }
+    connection.query(
+        "SELECT  COUNT(*) AS NumberOfReservations FROM tables WHERE reservation_type=?",
+        ["reserved"],
+        function(err, res) {
+            if (err) throw err;
+            console.log(res);
+        }
+    )
 }
 
 function reserveDelete(callback) {
