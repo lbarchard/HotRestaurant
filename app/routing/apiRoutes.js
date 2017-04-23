@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "cdbrannon",
+  password: "Bmtsubs1!1",
   database: "HotRestaurantDB"
 });
 
@@ -36,7 +36,12 @@ module.exports = function(app) {
     });
 
     app.post('/api/tables', function (req, res) {
-        res.json(reservePost(req));
+         reservePost(req.body, function(reservationType) {
+            response = {
+                "result": reservationType 
+            }
+            res.json(response);
+        })
     });
 
     app.delete('/api/tables', function (req, res) {
@@ -51,38 +56,31 @@ function reserveGet(callback) {
     "SELECT reservation_id, name, phone_number, email, reservation_type FROM tables",
         function(err, res) {
         if (err) throw err;
-        console.log(res);
         callback(res);
     });
 }
 
-function reservePost(request) {
-    let reservation = request.body;
+function reservePost(body, callback) {
+    var reservationType
     connection.query(
         "SELECT  COUNT(*) AS NumberOfReservations FROM tables WHERE reservation_type=?",
         ["reserved"],
         function(err, res) {
             if (err) throw err;
-            console.log(res[0].NumberOfReservations);
-
             if (res[0].NumberOfReservations >= 5) {
-                connection.query(
-                    "INSERT INTO tables (name, phone_number, email, reservation_type) VALUES (?, ?, ?, ?)",
-                    ["Cody", "5978345", "enadga@gmail.com", "wait-list"],
-                    function(err, res) {
-                        if (err) throw err;
-                        console.log(res);
-                });
-            } else {
-                connection.query(
-                    "INSERT INTO tables (name, phone_number, email, reservation_type) VALUES (?, ?, ?, ?)",
-                    ["Cody", "5978345", "enadga@gmail.com", "reserved"],
-                    function(err, res) {
-                        if (err) throw err;
-                        console.log(res);
-                });
+                reservationType = "wait-list"
+                }
+            else {
+                reservationType = "reserved"
             }
-    });
+            connection.query(
+                "INSERT INTO tables (name, phone_number, email, reservation_type) VALUES (?, ?, ?, ?)",
+                [body.name, body.phone_number, body.email, reservationType],
+                function(err, res) {
+                    if (err) throw err;
+                    callback(reservationType);
+                })
+        });
 }
 
 function reserveDelete(callback) {
