@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "cdbrannon",
+  password: "marvin",
   database: "HotRestaurantDB"
 });
 
@@ -25,7 +25,7 @@ connection.connect(function(err) {
 module.exports = function(app) {
     require('../data/reservations.js');
     // Add this line below
-    app.use(bodyParser.urlencoded({ extended: true })) 
+    app.use(bodyParser.urlencoded({ extended: true }))
 
     app.use(bodyParser.json());
 
@@ -36,6 +36,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/tables', function (req, res) {
+      console.log("This is in the api routes");
         res.json(reservePost(req));
     });
 
@@ -85,5 +86,5 @@ function reserveDelete(callback) {
             callback(deleted);
         }
     )
-    
+
 }
